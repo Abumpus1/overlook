@@ -45,4 +45,18 @@ describe("Hotel", () => {
   it("should make rooms instances of Room", () => {
     expect(hotel.rooms[0]).to.be.an.instanceOf(Room);
   });
+
+  it("should have a method to assign an active customer based on id", () => {
+    hotel.selectCustomer(1);
+    expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[0]);
+  });
+
+  it("should have a method to return active user's bookings", () => {
+    hotel.selectCustomer(1);
+
+    let userOneBookings = hotel.findUserBookings();
+    expect(userOneBookings).to.have.a.lengthOf(2);
+    expect(userOneBookings[0]).to.deep.equal(sampleBookings[0]);
+    expect(userOneBookings[1]).to.deep.equal(sampleBookings[2]);
+  })
 });

@@ -7,13 +7,13 @@ const sampleBookings = [
   },
   {
   id: "5fwrgu4i7k55hl6t5",
-  userID: 1,
+  userID: 2,
   date: "2022/01/24",
   roomNumber: 2
   },
   {
   id: "5fwrgu4i7k55hl6t6",
-  userID: 2,
+  userID: 1,
   date: "2022/01/10",
   roomNumber: 3
   },

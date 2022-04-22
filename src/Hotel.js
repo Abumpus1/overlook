@@ -9,6 +9,14 @@ class Hotel {
     this.bookings = bookings.map(booking => new Booking(booking));
     this.rooms = rooms.map(room => new Room(room));
   }
+
+  selectCustomer(id) {
+    this.activeCustomer = this.allCustomers.find(customer => customer.id === id)
+  }
+
+  findUserBookings() {
+    return this.bookings.filter(booking => booking.userID === this.activeCustomer.id);
+  }
 }
 
 export default Hotel;
