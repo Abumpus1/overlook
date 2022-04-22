@@ -3,19 +3,60 @@
   font-family: Calibri, sans-serif;
   font-size: 16pt;
   margin: 0;
+  /* border: solid pink 2px; */
+}
+
+html, body {
+  /* height: 100%; */
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+main {
+  display: flex;
+  height: 85%;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 button {
+  cursor: pointer;
   border-radius: 8px;
-  background: #ffffff;
-  font-size: 14pt;
+  border: 0;
+  color: #ffffff;
+  background: #015524;
+  font-size: 12pt;
+  max-width: 200px;
 }
 
-body {
-  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
-  /* background: #eeeeee; */
+label {
+  cursor: pointer;
 }
 
+input {
+  cursor: pointer;
+}
+
+.bookings-list {
+  width: 75vw;
+}
+
+.user-bookings-box, .all-bookings-box {
+  border: solid black 1px;
+  margin-top: 100px;
+  width: 80%;
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: #efe6df;
+}
 
 /* -------- NAV BAR -------- */
 nav {
@@ -23,17 +64,90 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0 5vw 0 5vw;
-  background: #efdfdf;
-  height: 15vh;
+  background: #efe6df;
+  height: 15%;
+  border-bottom: solid black 1px;
 }
 
 .logo {
   height: 12vh;
 }
 
-/* -------- MAIN -------- */
-main {
-  height: 85vh;
+.return-to-dashboard, .book-now {
+  height: 60px;
+  width: 130px;
+}
+
+/* -------- DASHBOARD -------- */
+
+/* -- user bookings -- */
+.dashboard-page {
+  display: flex;
+  height: 200vh;
+}
+
+
+
+/* -- aside -- */
+.dashboard-aside, .bookings-aside {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 25vw;
+  border-left: solid black 1px;
+}
+
+.user-bookings-box {
+  height: 150px;
+}
+
+.filter-user-bookings, .filter-room-types {
+  display: flex;
+  border: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  font-size: 14pt;
+}
+
+.dashboard-aside input, .bookings-aside input {
+  margin: 0 5px 0 0;
+}
+
+.dashboard-aside p {
+  margin-left: 20px;
+}
+
+.dashboard-aside p, .total-spent {
+  font-size: 14pt;
+}
+
+/* -------- BOOKINGS PAGE -------- */
+.booking-select-page {
+  height: 200vh;
+  display: flex;
+}
+
+/* -- aside -- */
+.bookings-aside {
+  width: 25vw;
+}
+
+.all-bookings-box {
+  align-items: center;
+  height: 300px;
+}
+
+.date-input-box {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.update-booking-search {
+  height: 32px;
 }
 
 
