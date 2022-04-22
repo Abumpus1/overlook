@@ -1,7 +1,13 @@
+import Customer from "./Customer";
+import Booking from "./Booking";
+import Room from "./Room";
+
 class Hotel {
   constructor(customers, rooms, bookings) {
     this.activeCustomer = null;
-    this.allCustomers = customers;
+    this.allCustomers = customers.map(customer => new Customer(customer));
+    this.bookings = bookings.map(booking => new Booking(booking));
+    this.rooms = rooms.map(room => new Room(room));
   }
 }
 
