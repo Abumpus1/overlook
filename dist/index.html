@@ -7,8 +7,56 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
+  <nav>
+    <img src="./images/OverlookHotel.png" alt="logo" class="logo">
+    <h2 class="welcome-user">Welcome back, Johnny!</h2>
+    <button class="book-now">BOOK NOW</button>
+    <button class="return-to-dashboard hidden">RETURN TO DASHBOARD</button>
+  </nav>
+  <main>
+    <section class="dashboard-page">
+      <article class="user-bookings-container bookings-list">
+        <!-- LIST OF USER BOOKINGS GO HERE -->
+      </article>
+      <aside class="dashboard-aside">
+        <form class="user-bookings-box">
+          <fieldset class="filter-user-bookings">
+            <legend>View Your Bookings</legend>
+            <label><input type="radio" name="user-bookings" class="user-bookings-radio">Active Bookings</label>
+            <label><input type="radio" name="user-bookings" class="user-bookings-radio">Previous Bookings</label>
+          </fieldset>
+          <p>Total you've spent: $<span class="total-spent">5000.63</span></p>
+        </form>
+      </aside>
+    </section>
+    <section class="booking-select-page hidden">
+      <article class="available-bookings-container bookings-list">
+        <!-- LIST OF ALL AVAILABLE BOOKINGS GO HERE -->
+      </article>
+      <aside class="bookings-aside">
+        <form class="all-bookings-box">
+          <fieldset class="filter-room-types">
+            <legend>Filter Bookings by Room Type</legend>
+            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Any</label>
+            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Residential Suite</label>
+            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Suite</label>
+            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Junior Suite</label>
+            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Single Room</label>
+          </fieldset>
+          <div class="date-input-box">
+            <label for="bookDateInput">Book a room by date:</label>
+            <input type="date" id="bookDateInput" name="trip-start" value="" min="">
+          </div>
+          <button class="update-booking-search">Update Search Filters</button>
+        </form>
+      </aside>
+    </section>
+  </main>
+  <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+ 
+
   
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
