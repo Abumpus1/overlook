@@ -89,6 +89,35 @@ describe("Hotel", () => {
     );
   });
 
+  it("should have a method to sort user rooms", () => {
+    hotel.selectCustomer(1);
+    
+    let sortedRoomDetails = hotel.sortUserRooms();
+
+    expect(sortedRoomDetails).to.deep.equal(
+      [
+        {
+          number: 3,
+          date: "2022/01/10",
+          roomType: "single room",
+          bidet: false,
+          bedSize: "king",
+          numBeds: 1,
+          costPerNight: 491.14
+        },
+        {
+          number: 1,
+          date: "2022/04/22",
+          roomType: "residential suite",
+          bidet: true,
+          bedSize: "queen",
+          numBeds: 1,
+          costPerNight: 358.4
+        }
+      ]
+    );
+  });
+
   it("should have a method to find active customer's total spent on bookings", () => {
     hotel.selectCustomer(1);
 

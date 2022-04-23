@@ -65,6 +65,10 @@ input {
   height: inherit;
 }
 
+.dashboard-aside input, .bookings-aside input {
+  margin: 10px 5px 10px 10px;
+}
+
 
 /* -------- NAV BAR -------- */
 
@@ -101,19 +105,31 @@ nav {
 
 .user-booking-box {
   display: flex;
-  margin: 10px 10%;
+  margin: 10px 5vw;
   padding: 10px;
-  border: solid black 1px;
+  border: solid grey 1px;
+  min-width: 650px;
+}
+
+.user-booking-box > div {
+  padding-left: 10px;
+  width: 70%;
 }
 
 .user-booking-box img {
-  margin-right: 20px;
   height: 130px;
   width: 180px;
+  border: solid lightgray 1px;
 }
 
 .user-booking-box h3 {
+  margin-bottom: 10px;
   color: #015524;
+}
+
+.box-line {
+  width: 100%;
+  border-bottom: solid lightgray 1px;
 }
 
 .user-booking-box p {
@@ -125,7 +141,8 @@ nav {
 /* -- aside -- */
 
 .user-bookings-box {
-  height: 150px;
+  /* height: 20vh; */
+  height:210px;
 }
 
 .filter-user-bookings, .filter-room-types {
@@ -137,10 +154,6 @@ nav {
 
 label {
   font-size: 14pt;
-}
-
-.dashboard-aside input, .bookings-aside input {
-  margin: 0 5px 0 0;
 }
 
 .dashboard-aside p {

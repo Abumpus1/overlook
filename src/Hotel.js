@@ -26,6 +26,12 @@ class Hotel {
     });
   }
 
+  sortUserRooms() {
+    return this.findUserRoomDetails().sort((a, b) => {
+      return a.date.split("/").join("") - b.date.split("/").join("");
+    });
+  }
+
   calcTotal() {
     return this.findUserRoomDetails().reduce((acc, room) => {
       acc += room.costPerNight;

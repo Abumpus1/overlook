@@ -17,6 +17,7 @@ let hotel;
 // QUERY SELECTORS ///////////////////////////////
 const bookDateInput = document.querySelector("#bookDateInput");
 const userBookings = document.querySelector(".user-bookings-container");
+const userBookingsOld = document.querySelector(".user-bookings-container-old");
 const totalSpent = document.querySelector(".total-spent");
 const welcomeUser = document.querySelector(".welcome-user");
 
@@ -45,20 +46,36 @@ const setBookingDate = () => {
 
 const updateDashboard = () => {
   userBookings.innerHTML = "";
+  userBookingsOld.innerHTML = "";
   totalSpent.innerText = hotel.calcTotal();
   welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`
-  hotel.findUserRoomDetails().forEach(room => {
-    userBookings.innerHTML += `
+  let dateNum = bookDateInput.value.split("-").join("");
+  let userBookingsByDate;
+  hotel.sortUserRooms().forEach(room => {
+    let roomDate = room.date.split("/").join("");
+    if (roomDate < dateNum) {
+      userBookingsByDate = userBookingsOld;
+    } else {
+      userBookingsByDate = userBookings;
+    }
+    userBookingsByDate.innerHTML += `
     <article class="user-booking-box">
       <img src="./images/${room.numBeds}${room.bedSize}.jpg">
       <div>
-        <h3>Room ${room.number} is booked for ${room.date}</h3>
+        <h3>You've booked room ${room.number} for ${room.date}</h3>
+        <div class="box-line"></div>
         <p>${room.roomType}</p>
         <p>${room.numBeds} ${room.bedSize}</p>
       </div>
     </article>
     `;
   });
+  if (!userBookings.innerHTML) {
+    userBookings.innerHTML += `
+    <p>It looks like you have no active bookings.</p>
+    <p>Looking for your previous bookings? Please select "Previous Bookings" on the right.</p>
+    `
+  }
 }
 
 
