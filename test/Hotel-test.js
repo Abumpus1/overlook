@@ -48,15 +48,31 @@ describe("Hotel", () => {
 
   it("should have a method to assign an active customer based on id", () => {
     hotel.selectCustomer(1);
+
     expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[0]);
   });
 
-  it("should have a method to return active user's bookings", () => {
+  it("should have a method to return active customer's bookings", () => {
     hotel.selectCustomer(1);
 
-    let userOneBookings = hotel.findUserBookings();
-    expect(userOneBookings).to.have.a.lengthOf(2);
-    expect(userOneBookings[0]).to.deep.equal(sampleBookings[0]);
-    expect(userOneBookings[1]).to.deep.equal(sampleBookings[2]);
-  })
+    let customerOneBookings = hotel.findUserBookings();
+
+    expect(customerOneBookings).to.deep.equal([sampleBookings[0], sampleBookings[2]]);
+  });
+
+  it("should have a method to get room details of customer's bookings", () => {
+    hotel.selectCustomer(1);
+
+    let customerRoomDetails = hotel.findUserRoomDetails();
+
+    expect(customerRoomDetails).to.deep.equal([sampleRooms[0], sampleRooms[2]]);
+  });
+
+  it("should have a method to find active customer's total spent on bookings", () => {
+    hotel.selectCustomer(1);
+
+    let customerTotal = hotel.calcTotal();
+
+    expect(customerTotal).to.equal(849.54);
+  });
 });

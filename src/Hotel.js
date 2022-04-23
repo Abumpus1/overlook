@@ -17,6 +17,19 @@ class Hotel {
   findUserBookings() {
     return this.bookings.filter(booking => booking.userID === this.activeCustomer.id);
   }
+
+  findUserRoomDetails() {
+    return this.findUserBookings().map(booking => {
+      return this.rooms.find(room => room.number === booking.roomNumber);
+    });
+  }
+
+  calcTotal() {
+    return this.findUserRoomDetails().reduce((acc, room) => {
+      acc += room.costPerNight;
+      return acc;
+    },0);
+  }
 }
 
 export default Hotel;
