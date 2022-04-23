@@ -1,17 +1,32 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+import { getData } from "./api-calls";
 import "./css/styles.css";
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import Hotel from "./Hotel";
 import "./images/OverlookHotel.png";
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
 
-// QUERY SELECTORS ///////////////////////////
-let bookDateInput = document.querySelector("#bookDateInput");
+// QUERY SELECTORS ///////////////////////////////
+let hotel;
+const bookDateInput = document.querySelector("#bookDateInput");
 
+// FUNCTIONS /////////////////////////////////////
 bookDateInput.min = new Date().toISOString().split("T")[0];
 bookDateInput.value = new Date().toISOString().split("T")[0];
+
+const promiseData = () => {
+  Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
+  .then(data => {
+    setHotel(data[0].customers, data[1].rooms, data[2].bookings);
+    hotel.selectCustomer(1);
+
+  })
+  .catch(err => console.log(err));
+}
+
+const setHotel = (customers, rooms, bookings) => {
+  hotel = new Hotel(customers, rooms, bookings);
+}
+
+
+// EVENT LISTENERS ///////////////////////////////
+window.addEventListener("load", promiseData);
