@@ -2,6 +2,14 @@ import { getData } from "./api-calls";
 import "./css/styles.css";
 import Hotel from "./Hotel";
 import "./images/OverlookHotel.png";
+import "./images/1full.jpg";
+import "./images/2full.jpg";
+import "./images/1twin.jpg";
+import "./images/2twin.jpg";
+import "./images/1queen.jpg";
+import "./images/2queen.jpg";
+import "./images/1king.jpg";
+import "./images/2king.jpg";
 
 let hotel;
 
@@ -37,12 +45,15 @@ const updateDashboard = () => {
   userBookings.innerHTML = "";
   hotel.findUserRoomDetails().forEach(room => {
     userBookings.innerHTML += `
-    <div class="user-booking-box">
-      <h3>Room ${room.number} is booked for ${room.date}</h3>
-      <p>${room.roomType}</p>
-      <p>${room.numBeds} ${room.bedSize}</p>
-    </div>
-    `
+    <article class="user-booking-box">
+      <img src="./images/${room.numBeds}${room.bedSize}.jpg">
+      <div>
+        <h3>Room ${room.number} is booked for ${room.date}</h3>
+        <p>${room.roomType}</p>
+        <p>${room.numBeds} ${room.bedSize}</p>
+      </div>
+    </article>
+    `;
   });
 }
 

@@ -8,20 +8,14 @@
 }
 
 html, body {
-  /* height: 100%; */
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  height: 100%;
   overflow: hidden;
-  position: absolute;
 }
 
 main {
   display: flex;
   height: 85%;
   overflow: hidden;
-  overflow-y: auto;
 }
 
 button {
@@ -47,14 +41,14 @@ input {
 
 .bookings-list {
   width: 75vw;
+  overflow-y: auto;
+  padding-bottom: 50px;
 }
 
 .user-bookings-box, .all-bookings-box {
   border: solid black 1px;
-  margin-top: 100px;
+  margin-top: 40px;
   width: 80%;
-  position: sticky;
-  top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,6 +62,7 @@ input {
   position: relative;
   width: 25vw;
   border-left: solid black 1px;
+  height: inherit;
 }
 
 
@@ -100,7 +95,25 @@ nav {
 
 .dashboard-page {
   display: flex;
-  height: 200vh;
+  /* height: 200vh; */
+  height: initial;
+}
+
+.user-booking-box {
+  display: flex;
+  margin: 10px 10%;
+  padding: 10px;
+  border: solid black 1px;
+}
+
+.user-booking-box img {
+  margin-right: 20px;
+  height: 130px;
+  width: 180px;
+}
+
+.user-booking-box h3 {
+  color: #015524;
 }
 
 
