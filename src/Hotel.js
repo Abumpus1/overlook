@@ -22,7 +22,6 @@ class Hotel {
     return this.findUserBookings().map(booking => {
       let userRoom = this.rooms.find(room => room.number === booking.roomNumber);
       userRoom.date = booking.date;
-      console.log(userRoom);
       return userRoom;
     });
   }
