@@ -20,7 +20,10 @@ class Hotel {
 
   findUserRoomDetails() {
     return this.findUserBookings().map(booking => {
-      return this.rooms.find(room => room.number === booking.roomNumber);
+      let userRoom = this.rooms.find(room => room.number === booking.roomNumber);
+      userRoom.date = booking.date;
+      console.log(userRoom);
+      return userRoom;
     });
   }
 
