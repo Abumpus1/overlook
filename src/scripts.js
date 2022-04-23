@@ -17,6 +17,7 @@ let hotel;
 // QUERY SELECTORS ///////////////////////////////
 const bookDateInput = document.querySelector("#bookDateInput");
 const userBookings = document.querySelector(".user-bookings-container");
+const totalSpent = document.querySelector(".total-spent");
 
 // FUNCTIONS /////////////////////////////////////
 
@@ -43,6 +44,7 @@ const setBookingDate = () => {
 
 const updateDashboard = () => {
   userBookings.innerHTML = "";
+  totalSpent.innerText = hotel.calcTotal();
   hotel.findUserRoomDetails().forEach(room => {
     userBookings.innerHTML += `
     <article class="user-booking-box">

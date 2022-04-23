@@ -29,6 +29,7 @@ class Hotel {
   calcTotal() {
     return this.findUserRoomDetails().reduce((acc, room) => {
       acc += room.costPerNight;
+      acc = Math.round(acc * 100) / 100
       return acc;
     },0);
   }
