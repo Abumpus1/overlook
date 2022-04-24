@@ -59,7 +59,7 @@ const updateDashboard = () => {
     }
     userBookingsByDate.innerHTML += `
     <article class="user-booking-box">
-      <img src="./images/${room.numBeds}${room.bedSize}.jpg">
+      <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
       <div>
         <h4>You've booked room ${room.number} for ${room.date}</h4>
         <div class="box-line"></div>
@@ -71,7 +71,7 @@ const updateDashboard = () => {
   });
   if (!userBookings.innerHTML) {
     userBookings.innerHTML += `
-      <p>It looks like you have no active bookings.</p>
+      <h4>It looks like you have no active bookings.</h4>
     `;
   }
 }
