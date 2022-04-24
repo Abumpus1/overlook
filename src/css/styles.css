@@ -8,20 +8,14 @@
 }
 
 html, body {
-  /* height: 100%; */
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  height: 100%;
   overflow: hidden;
-  position: absolute;
 }
 
 main {
   display: flex;
   height: 85%;
   overflow: hidden;
-  overflow-y: auto;
 }
 
 button {
@@ -46,28 +40,11 @@ input {
 /* -------- MULTI USE -------- */
 
 .bookings-list {
-  width: 75vw;
-}
-
-.user-bookings-box, .all-bookings-box {
-  border: solid black 1px;
-  margin-top: 100px;
-  width: 80%;
-  position: sticky;
-  top: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20px 0;
-  background: #efe6df;
-}
-
-.dashboard-aside, .bookings-aside {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  width: 25vw;
-  border-left: solid black 1px;
+  width: 100vw;
+  padding-bottom: 50px;
+  align-items: center;
 }
 
 
@@ -99,38 +76,68 @@ nav {
 /* -- user bookings -- */
 
 .dashboard-page {
-  display: flex;
-  height: 200vh;
+  overflow-y: auto;
+  position: relative;
+  
 }
 
-
-/* -- aside -- */
-
-.user-bookings-box {
-  height: 150px;
-}
-
-.filter-user-bookings, .filter-room-types {
+.user-total-box {
   display: flex;
-  border: 0;
-  flex-direction: column;
+  position: sticky;
+  top: 0;
+  margin-left: 35px;
+  padding: 5px;
   justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 20vw;
+  background: #efe6df;
 }
 
-label {
-  font-size: 14pt;
+.dashboard-tag {
+  border-bottom: solid #015524 3px;
 }
 
-.dashboard-aside input, .bookings-aside input {
-  margin: 0 5px 0 0;
+.dashboard-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
-.dashboard-aside p {
-  margin-left: 20px;
+.user-booking-box {
+  display: flex;
+  margin: 10px 5vw;
+  padding: 10px;
+  border: solid grey 1px;
+  min-width: 650px;
 }
 
-.dashboard-aside p, .total-spent {
-  font-size: 14pt;
+.user-booking-box > div {
+  padding-left: 10px;
+  width: 70%;
+}
+
+.user-booking-box img {
+  height: 130px;
+  width: 180px;
+  border: solid lightgray 1px;
+}
+
+.user-booking-box h4 {
+  margin-bottom: 10px;
+  color: #015524;
+}
+
+.box-line {
+  width: 100%;
+  border-bottom: solid lightgray 1px;
+}
+
+.user-booking-box p {
+  margin-top: 20px;
+  font-size: 12pt;
 }
 
 
@@ -143,10 +150,27 @@ label {
 
 /* -- aside -- */
 .bookings-aside {
+  display: flex;
+  justify-content: center;
+  position: relative;
   width: 25vw;
+  border-left: solid black 1px;
+  height: inherit;
+}
+
+.bookings-aside input {
+  margin: 10px 5px 10px 10px;
 }
 
 .all-bookings-box {
+  border: solid black 1px;
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: #efe6df;
   align-items: center;
   height: 300px;
 }
@@ -154,7 +178,6 @@ label {
 .date-input-box {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .update-booking-search {
