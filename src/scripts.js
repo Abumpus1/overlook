@@ -24,6 +24,9 @@ const bookNow = document.querySelector(".book-now");
 const returnToDash = document.querySelector(".return-to-dashboard");
 const dashboardPage = document.querySelector(".dashboard-page");
 const bookingsPage = document.querySelector(".booking-select-page");
+const allBookings = document.querySelector(".available-bookings-container");
+const roomTypeInputs = document.querySelectorAll(".filter-room-types input");
+const updateSearchButton = document.querySelector(".update-booking-search");
 
 
 // FUNCTIONS /////////////////////////////////////
@@ -88,6 +91,42 @@ const updateDashboard = () => {
   }
 }
 
+const checkForBidet = (room) => {
+  if (room.bidet) {
+    return "bidet included"
+  } else {
+    return "bidet not included"
+  }
+}
+
+const updateBookingsPage = () => {
+  // let roomType;
+  // roomTypeInputs.forEach(input => {
+
+  // })
+  allBookings.innerHTML = "";
+
+  // hotel.findFilteredRooms("2022-02-12").forEach(room => {
+  hotel.findFilteredRooms(bookDateInput.value).forEach(room => {
+    allBookings.innerHTML += `
+      <article class="booking-box">
+        <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
+        <div>
+          <h4>Room ${room.number} is available</h4>
+          <div class="box-line"></div>
+          <p>${room.roomType}</p>
+          <p>${room.numBeds} ${room.bedSize}</p>
+          <p>${checkForBidet(room)}</p>
+          <p class="cpn">Cost per night: $${room.costPerNight}</p>
+        </div>
+        <button type="button" class="book-room">BOOK NOW</button>
+      </article>
+    `
+  });
+
+
+}
+
 const goToBookingPage = () => {
   hide(bookNow);
   hide(dashboardPage);
@@ -107,3 +146,4 @@ const goToDashPage = () => {
 window.addEventListener("load", promiseData);
 bookNow.addEventListener("click", goToBookingPage);
 returnToDash.addEventListener("click", goToDashPage);
+updateSearchButton.addEventListener("click", updateBookingsPage);

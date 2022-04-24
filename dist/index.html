@@ -30,9 +30,9 @@
       </div>
     </section>
     <section class="booking-select-page hidden">
-      <article class="available-bookings-container bookings-list">
-        <!-- LIST OF ALL AVAILABLE BOOKINGS GO HERE -->
-      </article>
+      <section class="available-bookings-container bookings-list">
+        <!-- LIST OF ALL AVAILABLE BOOKINGS GO HERE --> 
+      </section>
       <aside class="bookings-aside">
         <form class="all-bookings-box">
           <fieldset class="filter-room-types">
@@ -47,7 +47,8 @@
             <label for="bookDateInput">Book a room by date:</label>
             <input type="date" id="bookDateInput" name="trip-start" value="" min="">
           </div>
-          <button class="update-booking-search">Update Search Filters</button>
+          <p class="date-err hidden">Please select a valid date</p>
+          <button type="button" class="update-booking-search">Update Search Filters</button>
         </form>
       </aside>
     </section>
