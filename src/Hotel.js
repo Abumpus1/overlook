@@ -19,10 +19,21 @@ class Hotel {
   }
 
   findUserRoomDetails() {
+    // let sortedBookings = this.findUserBookings().sort((a, b) => {
+    //   return a.date.split("/").join("") - b.date.split("/").join("");
+    // });
     return this.findUserBookings().map(booking => {
-      let userRoom = this.rooms.find(room => room.number === booking.roomNumber);
-      userRoom.date = booking.date;
-      return userRoom;
+      let thisRoom = this.rooms.find(room => room.number === booking.roomNumber)
+      return {
+        number: thisRoom.number,
+        roomType: thisRoom.roomType,
+        bidet: thisRoom.bidet,
+        bedSize: thisRoom.bedSize,
+        numBeds: thisRoom.numBeds,
+        costPerNight: thisRoom.costPerNight,
+        date: booking.date,
+        bookingID: booking.id
+      }
     });
   }
 

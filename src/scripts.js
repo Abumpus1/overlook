@@ -40,6 +40,7 @@ const setHotel = (customers, rooms, bookings) => {
 }
 
 const setBookingDate = () => {
+
   bookDateInput.min = new Date().toISOString().split("T")[0];
   bookDateInput.value = new Date().toISOString().split("T")[0];
 }
@@ -51,6 +52,7 @@ const updateDashboard = () => {
   welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`
   let dateNum = bookDateInput.value.split("-").join("");
   let userBookingsByDate;
+  // console.log(hotel.sortUserRooms());
   hotel.sortUserRooms().forEach(room => {
     let roomDate = room.date.split("/").join("");
     if (roomDate < dateNum) {
@@ -62,7 +64,7 @@ const updateDashboard = () => {
     <article class="user-booking-box">
       <img src="./images/${room.numBeds}${room.bedSize}.jpg">
       <div>
-        <h3>You've booked room ${room.number} for ${room.date}</h3>
+        <h4>You've booked room ${room.number} for ${room.date}</h4>
         <div class="box-line"></div>
         <p>${room.roomType}</p>
         <p>${room.numBeds} ${room.bedSize}</p>
@@ -72,8 +74,7 @@ const updateDashboard = () => {
   });
   if (!userBookings.innerHTML) {
     userBookings.innerHTML += `
-    <p>It looks like you have no active bookings.</p>
-    <p>Looking for your previous bookings? Please select "Previous Bookings" on the right.</p>
+      <p>It looks like you have no active bookings.</p>
     `
   }
 }

@@ -15,22 +15,28 @@
   </nav>
   <main>
     <section class="dashboard-page">
-      <article class="user-bookings-container bookings-list">
-        <!-- LIST OF USER BOOKINGS GO HERE -->
-      </article>
-      <article class="user-bookings-container-old bookings-list hidden">
-        <!-- LIST OF PAST USER BOOKINGS GO HERE -->
-      </article>
-      <aside class="dashboard-aside">
+      <div class="user-total-box">
+        <p>Total spent: $<span class="total-spent"></span></p>
+      </div>
+      <div class="dashboard-content">
+        <h3 class="dashboard-tag">Your Active Bookings</h3>
+        <article class="user-bookings-container bookings-list">
+          <!-- LIST OF USER BOOKINGS GO HERE -->
+        </article>
+        <h3 class="dashboard-tag">Your Previous Bookings</h3>
+        <article class="user-bookings-container-old bookings-list">
+          <!-- LIST OF PAST USER BOOKINGS GO HERE -->
+        </article>
+      </div>
+      <!-- <aside class="dashboard-aside hidden">
         <form class="user-bookings-box">
           <fieldset class="filter-user-bookings">
             <legend>View Your Bookings</legend>
-            <label><input type="radio" name="user-bookings" class="user-bookings-radio">Active Bookings</label>
-            <label><input type="radio" name="user-bookings" class="user-bookings-radio">Previous Bookings</label>
+            <label><input type="radio" name="user-bookings" id="activeBookings"  class="user-bookings-radio">Active Bookings</label>
+            <label><input type="radio" name="user-bookings" id="previousBookings" class="user-bookings-radio">Previous Bookings</label>
           </fieldset>
-          <p>Total you've spent: $<span class="total-spent"></span></p>
         </form>
-      </aside>
+      </aside> -->
     </section>
     <section class="booking-select-page hidden">
       <article class="available-bookings-container bookings-list">
