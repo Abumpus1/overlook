@@ -20,9 +20,21 @@ const userBookings = document.querySelector(".user-bookings-container");
 const userBookingsOld = document.querySelector(".user-bookings-container-old");
 const totalSpent = document.querySelector(".total-spent");
 const welcomeUser = document.querySelector(".welcome-user");
+const bookNow = document.querySelector(".book-now");
+const returnToDash = document.querySelector(".return-to-dashboard");
+const dashboardPage = document.querySelector(".dashboard-page");
+const bookingsPage = document.querySelector(".booking-select-page");
 
 
 // FUNCTIONS /////////////////////////////////////
+const hide = (element) => {
+  element.classList.add("hidden");
+}
+
+const show = (element) => {
+  element.classList.remove("hidden");
+}
+
 const promiseData = () => {
   Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
   .then(data => {
@@ -76,6 +88,22 @@ const updateDashboard = () => {
   }
 }
 
+const goToBookingPage = () => {
+  hide(bookNow);
+  hide(dashboardPage);
+  show(bookingsPage);
+  show(returnToDash);
+}
+
+const goToDashPage = () => {
+  hide(bookingsPage);
+  hide(returnToDash);
+  show(bookNow);
+  show(dashboardPage);
+}
+
 
 // EVENT LISTENERS ///////////////////////////////
 window.addEventListener("load", promiseData);
+bookNow.addEventListener("click", goToBookingPage);
+returnToDash.addEventListener("click", goToDashPage);
