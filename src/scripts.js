@@ -39,7 +39,6 @@ const setHotel = (customers, rooms, bookings) => {
 }
 
 const setBookingDate = () => {
-
   bookDateInput.min = new Date().toISOString().split("T")[0];
   bookDateInput.value = new Date().toISOString().split("T")[0];
 }
@@ -51,7 +50,6 @@ const updateDashboard = () => {
   welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`
   let dateNum = bookDateInput.value.split("-").join("");
   let userBookingsByDate;
-  // console.log(hotel.sortUserRooms());
   hotel.sortUserRooms().forEach(room => {
     let roomDate = room.date.split("/").join("");
     if (roomDate < dateNum) {
@@ -74,7 +72,7 @@ const updateDashboard = () => {
   if (!userBookings.innerHTML) {
     userBookings.innerHTML += `
       <p>It looks like you have no active bookings.</p>
-    `
+    `;
   }
 }
 

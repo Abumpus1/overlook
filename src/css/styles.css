@@ -178,7 +178,6 @@ nav {
 .date-input-box {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .update-booking-search {
