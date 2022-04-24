@@ -21,9 +21,8 @@ const userBookingsOld = document.querySelector(".user-bookings-container-old");
 const totalSpent = document.querySelector(".total-spent");
 const welcomeUser = document.querySelector(".welcome-user");
 
+
 // FUNCTIONS /////////////////////////////////////
-
-
 const promiseData = () => {
   Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
   .then(data => {
