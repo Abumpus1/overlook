@@ -73,6 +73,7 @@ describe("Hotel", () => {
           roomType: "residential suite",
           bidet: true,
           bedSize: "queen",
+          bookingID: "5fwrgu4i7k55hl6sz",
           numBeds: 1,
           costPerNight: 358.4
         }, 
@@ -82,6 +83,7 @@ describe("Hotel", () => {
           roomType: "single room",
           bidet: false,
           bedSize: "king",
+          bookingID: "5fwrgu4i7k55hl6t6",
           numBeds: 1,
           costPerNight: 491.14
         }
@@ -102,6 +104,7 @@ describe("Hotel", () => {
           roomType: "single room",
           bidet: false,
           bedSize: "king",
+          bookingID: "5fwrgu4i7k55hl6t6",
           numBeds: 1,
           costPerNight: 491.14
         },
@@ -111,6 +114,7 @@ describe("Hotel", () => {
           roomType: "residential suite",
           bidet: true,
           bedSize: "queen",
+          bookingID: "5fwrgu4i7k55hl6sz",
           numBeds: 1,
           costPerNight: 358.4
         }
