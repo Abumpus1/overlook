@@ -99,15 +99,22 @@ const checkForBidet = (room) => {
   }
 }
 
-const updateBookingsPage = () => {
-  // let roomType;
-  // roomTypeInputs.forEach(input => {
+const resetRoomType = () => {
+  roomTypeInputs[0].checked = true;
+}
 
-  // })
+const updateBookingsPage = () => {
   allBookings.innerHTML = "";
 
+  let roomType;
+  roomTypeInputs.forEach(input => {
+    if (input.checked) {
+      roomType = input.dataset.type;
+    }
+  });
+
   // hotel.findFilteredRooms("2022-02-12").forEach(room => {
-  hotel.findFilteredRooms(bookDateInput.value).forEach(room => {
+  hotel.findFilteredRooms(bookDateInput.value, roomType).forEach(room => {
     allBookings.innerHTML += `
       <article class="booking-box">
         <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
@@ -132,6 +139,8 @@ const goToBookingPage = () => {
   hide(dashboardPage);
   show(bookingsPage);
   show(returnToDash);
+  updateBookingsPage();
+  resetRoomType();
 }
 
 const goToDashPage = () => {

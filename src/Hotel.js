@@ -52,9 +52,17 @@ class Hotel {
     return this.bookings.filter(booking => booking.date === date).map(filtBook => filtBook.roomNumber);
   }
 
-  findFilteredRooms(date) {
+  findFilteredRooms(date, roomType) {
     let filteredBookings = this.findBookings(date.split("-").join("/"));
-    return this.rooms.filter(room => !filteredBookings.includes(room.number))
+    let roomsByDate = this.rooms.filter(room => !filteredBookings.includes(room.number))
+    return roomsByDate.reduce((acc, room) => {
+      if (!roomType) {
+        acc.push(room);
+      } else if (roomType === room.roomType) {
+        acc.push(room);
+      }
+      return acc;
+    }, []);
   }
 }
 
