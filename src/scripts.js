@@ -144,15 +144,15 @@ const updateBookingsPage = () => {
         </article>
       `;
     });
-    if(!allBookings.innerHTML) {
-      allBookings.innerHTML += `
-      <article class="booking-box">
-      <h4>We apologize for the inconvenience. There are no rooms available matching your search criteria. Please try selecting alternate dates or modifying your filter options.</h4>
-      </article>
-      `
-    }
   } else {
     show(dateErr);
+  }
+  if(!allBookings.innerHTML) {
+    allBookings.innerHTML += `
+    <article class="booking-box">
+    <h4>We apologize for the inconvenience. There are no rooms available matching your search criteria. Please try selecting alternate dates or modifying your filter options.</h4>
+    </article>
+    `
   }
 }
 
