@@ -52,6 +52,18 @@ describe("Hotel", () => {
     expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[0]);
   });
 
+  it("should be able to select another user", () => {
+    hotel.selectCustomer(5);
+
+    expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[4]);
+  });
+
+  it("should be undefined if given a bad number", () => {
+    hotel.selectCustomer(51);
+
+    expect(hotel.activeCustomer).to.equal(undefined);
+  });
+
   it("should have a method to return active customer's bookings", () => {
     hotel.selectCustomer(1);
 
@@ -129,4 +141,85 @@ describe("Hotel", () => {
 
     expect(customerTotal).to.equal(849.54);
   });
+
+  it("should have a method to return list of room numbers of bookings that are booked on the date passed through", () => {
+    let bookingIDs = hotel.findBookings("2022/01/24");
+
+    expect(bookingIDs).to.deep.equal([2]);
+  });
+
+  it("should be able to return a different room number for a different date", () => {
+    let bookingIDs = hotel.findBookings("2022/02/16");
+
+    expect(bookingIDs).to.deep.equal([4]);
+  });
+
+  it("should return an empty array if no matches are found", () => {
+    let bookingIDs = hotel.findBookings("2023/01/10");
+
+    expect(bookingIDs).to.deep.equal([]);
+  })
+
+  it("should be able to return multiple numbers if there are multiple bookings on the same date", () => {
+    let bookingIDs = hotel.findBookings("2022/04/22");
+
+    expect(bookingIDs).to.deep.equal([1, 4]);
+  });
+
+  it("should have a method to return list of rooms that are NOT booked on a specified date", () => {
+    let openRooms = hotel.findFilteredRooms("2022-04-22");
+
+    expect(openRooms).to.deep.equal([sampleRooms[1], sampleRooms[2], sampleRooms[4]])
+  });
+
+  it("should return all rooms if there are no bookings on specified date", () => {
+    let openRooms = hotel.findFilteredRooms("2023-01-10");
+
+    expect(openRooms).to.deep.equal(sampleRooms);
+  });
+
+  it("should be able to sort by room type", () => {
+    let openRooms = hotel.findFilteredRooms("2023-01-10", "single room");
+
+    expect(openRooms).to.deep.equal([sampleRooms[2],sampleRooms[3], sampleRooms[4]])
+  });
+
+  it("should be able to sort by room type and date", () => {
+    let openRooms = hotel.findFilteredRooms("2022-04-22", "single room");
+
+    expect(openRooms).to.deep.equal([sampleRooms[2], sampleRooms[4]])
+  });
+
+  it("should be able to sort by a different room type", () => {
+    let openRooms = hotel.findFilteredRooms("2022-04-22", "suite");
+
+    expect(openRooms).to.deep.equal([sampleRooms[1]])
+  });
+
+  it("should have a method to add a new booking", () => {
+    let newBooking = {
+      id: "5fwrgu4i7k55hl6aa",
+      userID: 2,
+      date: "2022/04/22",
+      roomNumber: 5
+    }
+    expect(hotel.bookings).to.have.a.lengthOf(5);
+
+    hotel.addBooking(newBooking);
+
+    expect(hotel.bookings).to.have.a.lengthOf(6);
+    expect(hotel.bookings[5]).to.deep.equal(newBooking);
+  });
+
+  it("should make the new booking an instance of Booking", () => {
+    let newBooking = {
+      id: "5fwrgu4i7k55hl6aa",
+      userID: 2,
+      date: "2022/04/22",
+      roomNumber: 5
+    }
+    hotel.addBooking(newBooking);
+
+    expect(hotel.bookings[5]).to.be.an.instanceOf(Booking);
+  })
 });
