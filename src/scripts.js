@@ -89,7 +89,7 @@ const updateDashboard = () => {
       userBookingsByDate = userBookings;
     }
     userBookingsByDate.innerHTML += `
-    <article class="user-booking-box">
+    <article aria-label="room ${room.number}" class="user-booking-box">
       <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
       <div>
         <h4>You've booked room ${room.number} for ${room.date}</h4>
@@ -131,7 +131,7 @@ const updateBookingsPage = () => {
     hide(dateErr);
     hotel.findFilteredRooms(bookDateInput.value, roomType).forEach(room => {
       allBookings.innerHTML += `
-        <article class="booking-box">
+        <article aria-label="room ${room.number}" class="booking-box">
           <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
           <div>
             <h4>Room ${room.number} is Available</h4>
@@ -141,7 +141,7 @@ const updateBookingsPage = () => {
             <p>${checkForBidet(room)}</p>
             <p class="cpn">Cost per night: $${room.costPerNight}</p>
           </div>
-          <button data-number="${room.number}" data-date="${bookDateInput.value.split("-").join("/")}" type="button" class="book-room">BOOK NOW</button>
+          <button aria-label="book room ${room.number} now" data-number="${room.number}" data-date="${bookDateInput.value.split("-").join("/")}" type="button" class="book-room">BOOK NOW</button>
         </article>
       `;
     });
@@ -165,6 +165,7 @@ const goToBookingPage = () => {
   setBookingDate();
   resetRoomType();
   updateBookingsPage();
+  returnToDash.focus();
 }
 
 const goToDashPage = () => {
@@ -173,6 +174,7 @@ const goToDashPage = () => {
   show(bookNow);
   show(dashboardPage);
   updateDashboard();
+  bookNow.focus();
 }
 
 
