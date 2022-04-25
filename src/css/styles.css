@@ -14,6 +14,8 @@ html, body {
 
 main {
   display: flex;
+  /* position: relative; */
+  flex-direction: column;
   height: 85%;
   overflow: hidden;
 }
@@ -47,6 +49,36 @@ input {
   align-items: center;
 }
 
+.user-booking-box, .booking-box {
+  display: flex;
+  margin: 10px 5vw;
+  padding: 10px;
+  border: solid grey 1px;
+  min-width: 650px;
+}
+
+.user-booking-box > div, .booking-box > div {
+  padding-left: 10px;
+  width: 70%;
+}
+
+.user-booking-box img, .booking-box img {
+  height: 130px;
+  width: 180px;
+  border: solid lightgray 1px;
+}
+
+.user-booking-box h4, .booking-box h4 {
+  margin-bottom: 10px;
+  color: #015524;
+}
+
+.box-line {
+  width: 100%;
+  border-bottom: solid lightgray 1px;
+  margin-bottom: 5px;
+}
+
 
 /* -------- NAV BAR -------- */
 
@@ -54,7 +86,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw 0 5vw;
+  padding: 0 5vw;
   background: #efe6df;
   height: 15%;
   border-bottom: solid black 1px;
@@ -78,20 +110,39 @@ nav {
 .dashboard-page {
   overflow-y: auto;
   position: relative;
-  
+}
+
+.stanley-box {
+  width: 100vw;
+  height: 45vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.stanley {
+  width: 100vw;
 }
 
 .user-total-box {
   display: flex;
   position: sticky;
-  top: 0;
+  top: -9vh;
   margin-left: 35px;
   padding: 5px;
   justify-content: center;
-  align-items: center;
-  height: 10vh;
+  align-items: flex-end;
+  height: 14vh;
   width: 20vw;
+  padding-bottom: 1vw;
   background: #efe6df;
+  border-radius: 0 0 10px 10px;
+}
+
+.user-total-box h2, .user-total-box span {
+  font-size: 1.8vw;
 }
 
 .dashboard-tag {
@@ -99,40 +150,13 @@ nav {
 }
 
 .dashboard-content {
+  margin-top: -14vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
-}
-
-.user-booking-box {
-  display: flex;
-  margin: 10px 5vw;
-  padding: 10px;
-  border: solid grey 1px;
-  min-width: 650px;
-}
-
-.user-booking-box > div {
-  padding-left: 10px;
-  width: 70%;
-}
-
-.user-booking-box img {
-  height: 130px;
-  width: 180px;
-  border: solid lightgray 1px;
-}
-
-.user-booking-box h4 {
-  margin-bottom: 10px;
-  color: #015524;
-}
-
-.box-line {
-  width: 100%;
-  border-bottom: solid lightgray 1px;
+  z-index: 2;
 }
 
 .user-booking-box p {
@@ -144,18 +168,48 @@ nav {
 /* -------- BOOKINGS PAGE -------- */
 
 .booking-select-page {
-  height: 200vh;
   display: flex;
+  overflow-y: auto;
+  position: relative;
+  flex-direction: row-reverse;
+}
+
+.available-bookings-container {
+  padding-bottom: 5vh;
+  height: auto;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.booking-box {
+  position: relative;
+  min-width: 500px;
+  width: 50vw;
+}
+
+.booking-box button {
+  height: 50px;
+  width: 120px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.booking-box p {
+  font-size: 12pt;
+}
+
+.cpn {
+  font-weight: bold;
+  color: #015524;
+  margin-top: 15px;
 }
 
 /* -- aside -- */
 .bookings-aside {
   display: flex;
   justify-content: center;
-  position: relative;
-  width: 25vw;
-  border-left: solid black 1px;
-  height: inherit;
+  width: 45vw;
 }
 
 .bookings-aside input {
@@ -165,19 +219,36 @@ nav {
 .all-bookings-box {
   border: solid black 1px;
   margin-top: 40px;
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px 0;
   background: #efe6df;
   align-items: center;
-  height: 300px;
+  height: 400px;
+  border-radius: 8px;
+  min-width: 250px;
+}
+
+.filter-room-types {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px;
+  border-radius: 15px;
 }
 
 .date-input-box {
   display: flex;
   flex-direction: column;
+}
+
+#bookDateInput {
+  margin-left: 0;
+}
+
+.date-err {
+  color: red;
 }
 
 .update-booking-search {

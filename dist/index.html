@@ -8,48 +8,53 @@
 </head>
 <body>
   <nav>
-    <img src="./images/OverlookHotel.png" alt="logo" class="logo">
-    <h2 class="welcome-user"></h2>
+    <img src="./images/OverlookHotel.png" alt="overlook hotel logo" class="logo">
+    <h1 class="welcome-user"></h1>
     <button class="book-now">BOOK NOW</button>
     <button class="return-to-dashboard hidden">RETURN TO DASHBOARD</button>
   </nav>
   <main>
     <section class="dashboard-page">
+      <div class="stanley-box">
+        <img class="stanley" src="./images/stanley.jpg" alt="stanley hotel">
+      </div>
       <div class="user-total-box">
-        <p>Total spent: $<span class="total-spent"></span></p>
+        <h2>Total spent: $<span class="total-spent"></span></h2>
       </div>
       <div class="dashboard-content">
         <h3 class="dashboard-tag">Your Active Bookings</h3>
-        <article class="user-bookings-container bookings-list">
+        <section class="user-bookings-container bookings-list">
           <!-- LIST OF USER BOOKINGS GO HERE -->
-        </article>
+        </section>
         <h3 class="dashboard-tag">Your Previous Bookings</h3>
-        <article class="user-bookings-container-old bookings-list">
+        <section class="user-bookings-container-old bookings-list">
           <!-- LIST OF PAST USER BOOKINGS GO HERE -->
-        </article>
+        </section>
       </div>
     </section>
     <section class="booking-select-page hidden">
-      <article class="available-bookings-container bookings-list">
-        <!-- LIST OF ALL AVAILABLE BOOKINGS GO HERE -->
-      </article>
       <aside class="bookings-aside">
         <form class="all-bookings-box">
           <fieldset class="filter-room-types">
             <legend>Filter Bookings by Room Type</legend>
-            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Any</label>
-            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Residential Suite</label>
-            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Suite</label>
-            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Junior Suite</label>
-            <label><input type="radio" name="room-type-options" class="all-bookings-radio">Single Room</label>
+            <label><input type="radio" name="room-type-options" data-type="" class="all-bookings-radio">Any</label>
+            <label><input type="radio" name="room-type-options" data-type="residential suite" class="all-bookings-radio">Residential Suite</label>
+            <label><input type="radio" name="room-type-options" data-type="suite" class="all-bookings-radio">Suite</label>
+            <label><input type="radio" name="room-type-options" data-type="junior suite" class="all-bookings-radio">Junior Suite</label>
+            <label><input type="radio" name="room-type-options" data-type="single room" class="all-bookings-radio">Single Room</label>
           </fieldset>
           <div class="date-input-box">
             <label for="bookDateInput">Book a room by date:</label>
             <input type="date" id="bookDateInput" name="trip-start" value="" min="">
           </div>
-          <button class="update-booking-search">Update Search Filters</button>
+          <p class="date-err hidden">Please select a valid date</p>
+          <button type="button" class="update-booking-search">Update Search Filters</button>
         </form>
       </aside>
+      <section class="available-bookings-container bookings-list">
+        <!-- LIST OF ALL AVAILABLE BOOKINGS GO HERE --> 
+      </section>
+      
     </section>
   </main>
   <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->

@@ -26,7 +26,7 @@ const sampleBookings = [
   {
   id: "5fwrgu4i7k55hl6t8",
   userID: 3,
-  date: "2022/02/05",
+  date: "2022/04/22",
   roomNumber: 4
   }
 ];
