@@ -14,6 +14,8 @@ html, body {
 
 main {
   display: flex;
+  /* position: relative; */
+  flex-direction: column;
   height: 85%;
   overflow: hidden;
 }
@@ -108,7 +110,20 @@ nav {
 .dashboard-page {
   overflow-y: auto;
   position: relative;
-  
+}
+
+.stanley-box {
+  width: 100vw;
+  height: 45vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5vh;
+}
+
+.stanley {
+  width: 100vw;
 }
 
 .user-total-box {
@@ -141,6 +156,7 @@ nav {
   flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
+  z-index: 2;
 }
 
 .user-booking-box p {
@@ -193,11 +209,7 @@ nav {
 .bookings-aside {
   display: flex;
   justify-content: center;
-  /* position: sticky; */
-  /* top: 0; */
   width: 45vw;
-  /* border-left: solid black 1px; */
-  height: inherit;
 }
 
 .bookings-aside input {

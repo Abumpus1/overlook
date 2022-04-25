@@ -1,6 +1,7 @@
 import { getData, postData } from "./api-calls";
 import "./css/styles.css";
 import Hotel from "./Hotel";
+import "./images/stanley.jpg";
 import "./images/OverlookHotel.png";
 import "./images/1full.jpg";
 import "./images/2full.jpg";
@@ -28,7 +29,7 @@ const allBookings = document.querySelector(".available-bookings-container");
 const roomTypeInputs = document.querySelectorAll(".filter-room-types input");
 const updateSearchButton = document.querySelector(".update-booking-search");
 const dateErr = document.querySelector(".date-err");
-
+// const stanley = document.querySelector(".stanley");
 
 // FUNCTIONS /////////////////////////////////////
 const hide = (element) => {
