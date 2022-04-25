@@ -155,6 +155,7 @@ nav {
   display: flex;
   overflow-y: auto;
   position: relative;
+  flex-direction: row-reverse;
 }
 
 .available-bookings-container {
