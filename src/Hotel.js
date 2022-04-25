@@ -64,6 +64,10 @@ class Hotel {
       return acc;
     }, []);
   }
+
+  addBooking(newBooking) {
+    this.bookings.push(new Booking(newBooking));
+  }
 }
 
 export default Hotel;

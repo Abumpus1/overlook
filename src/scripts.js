@@ -1,4 +1,4 @@
-import { getData } from "./api-calls";
+import { getData, postData } from "./api-calls";
 import "./css/styles.css";
 import Hotel from "./Hotel";
 import "./images/OverlookHotel.png";
@@ -42,9 +42,19 @@ const promiseData = () => {
   Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
   .then(data => {
     setHotel(data[0].customers, data[1].rooms, data[2].bookings);
-    hotel.selectCustomer(1);
+    hotel.selectCustomer(50);
     setBookingDate();
     updateDashboard();
+  })
+  .catch(err => console.log(err));
+}
+
+const promisePost = (button) => {
+  Promise.all([postData(hotel.activeCustomer.id, button.dataset.date, parseInt(button.dataset.number))])
+  .then(data => {
+    console.log(data[0].newBooking);
+    hotel.addBooking(data[0].newBooking);
+    goToDashPage();
   })
   .catch(err => console.log(err));
 }
@@ -58,12 +68,16 @@ const setBookingDate = () => {
   bookDateInput.value = new Date().toISOString().split("T")[0];
 }
 
+const getDate = () => {
+  return new Date().toISOString().split("T")[0];
+}
+
 const updateDashboard = () => {
   userBookings.innerHTML = "";
   userBookingsOld.innerHTML = "";
   totalSpent.innerText = hotel.calcTotal();
   welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`
-  let dateNum = bookDateInput.value.split("-").join("");
+  let dateNum = getDate().split("-").join("");
   let userBookingsByDate;
   hotel.sortUserRooms().forEach(room => {
     let roomDate = room.date.split("/").join("");
@@ -119,19 +133,22 @@ const updateBookingsPage = () => {
       <article class="booking-box">
         <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
         <div>
-          <h4>Room ${room.number} is available</h4>
+          <h4>Room ${room.number} is Available</h4>
           <div class="box-line"></div>
           <p>${room.roomType}</p>
           <p>${room.numBeds} ${room.bedSize}</p>
           <p>${checkForBidet(room)}</p>
           <p class="cpn">Cost per night: $${room.costPerNight}</p>
         </div>
-        <button type="button" class="book-room">BOOK NOW</button>
+        <button data-number="${room.number}" data-date="${bookDateInput.value.split("-").join("/")}" type="button" class="book-room">BOOK NOW</button>
       </article>
-    `
+    `;
   });
-
-
+  if(!allBookings) {
+    allBookings.innerHTML += `
+    
+    `
+  }
 }
 
 const goToBookingPage = () => {
@@ -139,8 +156,9 @@ const goToBookingPage = () => {
   hide(dashboardPage);
   show(bookingsPage);
   show(returnToDash);
-  updateBookingsPage();
+  setBookingDate();
   resetRoomType();
+  updateBookingsPage();
 }
 
 const goToDashPage = () => {
@@ -148,6 +166,7 @@ const goToDashPage = () => {
   hide(returnToDash);
   show(bookNow);
   show(dashboardPage);
+  updateDashboard();
 }
 
 
@@ -156,3 +175,8 @@ window.addEventListener("load", promiseData);
 bookNow.addEventListener("click", goToBookingPage);
 returnToDash.addEventListener("click", goToDashPage);
 updateSearchButton.addEventListener("click", updateBookingsPage);
+allBookings.addEventListener("click", (event) => {
+  if(event.target.type === "button") {
+    promisePost(event.target);
+  }
+});
