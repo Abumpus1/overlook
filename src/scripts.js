@@ -27,6 +27,7 @@ const bookingsPage = document.querySelector(".booking-select-page");
 const allBookings = document.querySelector(".available-bookings-container");
 const roomTypeInputs = document.querySelectorAll(".filter-room-types input");
 const updateSearchButton = document.querySelector(".update-booking-search");
+const dateErr = document.querySelector(".date-err");
 
 
 // FUNCTIONS /////////////////////////////////////
@@ -119,35 +120,39 @@ const resetRoomType = () => {
 
 const updateBookingsPage = () => {
   allBookings.innerHTML = "";
-
   let roomType;
   roomTypeInputs.forEach(input => {
     if (input.checked) {
       roomType = input.dataset.type;
     }
   });
-
-  // hotel.findFilteredRooms("2022-02-12").forEach(room => {
-  hotel.findFilteredRooms(bookDateInput.value, roomType).forEach(room => {
-    allBookings.innerHTML += `
+  if (bookDateInput.value.split("-").join("") >= getDate().split("-").join("")) {
+    hide(dateErr);
+    hotel.findFilteredRooms(bookDateInput.value, roomType).forEach(room => {
+      allBookings.innerHTML += `
+        <article class="booking-box">
+          <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
+          <div>
+            <h4>Room ${room.number} is Available</h4>
+            <div class="box-line"></div>
+            <p>${room.roomType}</p>
+            <p>${room.numBeds} ${room.bedSize}</p>
+            <p>${checkForBidet(room)}</p>
+            <p class="cpn">Cost per night: $${room.costPerNight}</p>
+          </div>
+          <button data-number="${room.number}" data-date="${bookDateInput.value.split("-").join("/")}" type="button" class="book-room">BOOK NOW</button>
+        </article>
+      `;
+    });
+    if(!allBookings.innerHTML) {
+      allBookings.innerHTML += `
       <article class="booking-box">
-        <img src="./images/${room.numBeds}${room.bedSize}.jpg" alt="hotel bedroom showing ${room.numBeds} ${room.bedSize}">
-        <div>
-          <h4>Room ${room.number} is Available</h4>
-          <div class="box-line"></div>
-          <p>${room.roomType}</p>
-          <p>${room.numBeds} ${room.bedSize}</p>
-          <p>${checkForBidet(room)}</p>
-          <p class="cpn">Cost per night: $${room.costPerNight}</p>
-        </div>
-        <button data-number="${room.number}" data-date="${bookDateInput.value.split("-").join("/")}" type="button" class="book-room">BOOK NOW</button>
+      <h4>We apologize for the inconvenience. There are no rooms available matching your search criteria. Please try selecting alternate dates or modifying your filter options.</h4>
       </article>
-    `;
-  });
-  if(!allBookings) {
-    allBookings.innerHTML += `
-    
-    `
+      `
+    }
+  } else {
+    show(dateErr);
   }
 }
 
