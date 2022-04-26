@@ -1,6 +1,7 @@
 import { getData, postData } from "./api-calls";
 import "./css/styles.css";
 import Hotel from "./Hotel";
+import "./images/login-image.jpg";
 import "./images/stanley.jpg";
 import "./images/OverlookHotel.png";
 import "./images/1full.jpg";
@@ -13,7 +14,6 @@ import "./images/1king.jpg";
 import "./images/2king.jpg";
 
 let hotel;
-
 
 // QUERY SELECTORS ///////////////////////////////
 const bookDateInput = document.querySelector("#bookDateInput");
@@ -29,23 +29,33 @@ const allBookings = document.querySelector(".available-bookings-container");
 const roomTypeInputs = document.querySelectorAll(".filter-room-types input");
 const updateSearchButton = document.querySelector(".update-booking-search");
 const dateErr = document.querySelector(".date-err");
-// const stanley = document.querySelector(".stanley");
+const password = document.querySelector(".password");
+const username = document.querySelector(".username");
+const loginButton = document.querySelector(".sign-in");
+const loginErr = document.querySelector(".login-err");
+const main = document.querySelector("main");
+const nav = document.querySelector("nav");
+const loginPage = document.querySelector(".login-page");
 
-// FUNCTIONS /////////////////////////////////////
-const hide = (element) => {
-  element.classList.add("hidden");
-}
 
-const show = (element) => {
-  element.classList.remove("hidden");
-}
+// PROMISES //////////////////////////////////////
 
 const promiseData = () => {
-  Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
+  Promise.all([getData("rooms"), getData("bookings")])
   .then(data => {
-    setHotel(data[0].customers, data[1].rooms, data[2].bookings);
-    hotel.selectCustomer(50);
+    setHotel(data[0].rooms, data[1].bookings);
     setBookingDate();
+  })
+  .catch(err => console.log(err));
+}
+
+const promiseUser = (id) => {
+  Promise.all([getData(`customers/${id}`)])
+  .then(data => {
+    hotel.selectCustomer(data[0])
+    hide(loginPage);
+    show(nav);
+    show(main);
     updateDashboard();
   })
   .catch(err => console.log(err));
@@ -61,24 +71,40 @@ const promisePost = (button) => {
   .catch(err => console.log(err));
 }
 
+
+// FUNCTIONS /////////////////////////////////////
+
 const setHotel = (customers, rooms, bookings) => {
   hotel = new Hotel(customers, rooms, bookings);
 }
 
+const hide = (element) => {
+  element.classList.add("hidden");
+}
+
+const show = (element) => {
+  element.classList.remove("hidden");
+}
+
 const setBookingDate = () => {
-  bookDateInput.min = new Date().toISOString().split("T")[0];
-  bookDateInput.value = new Date().toISOString().split("T")[0];
+  bookDateInput.min = getDate();
+  bookDateInput.value = getDate();
 }
 
 const getDate = () => {
   return new Date().toISOString().split("T")[0];
 }
 
+const resetRoomType = () => {
+  roomTypeInputs[0].checked = true;
+}
+
 const updateDashboard = () => {
   userBookings.innerHTML = "";
   userBookingsOld.innerHTML = "";
+  dashboardPage.scrollTop = 0;
   totalSpent.innerText = hotel.calcTotal();
-  welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`
+  welcomeUser.innerText = `Welcome back, ${hotel.activeCustomer.name.split(" ")[0]}!`;
   let dateNum = getDate().split("-").join("");
   let userBookingsByDate;
   hotel.sortUserRooms().forEach(room => {
@@ -105,18 +131,6 @@ const updateDashboard = () => {
       <h4>It looks like you have no active bookings.</h4>
     `;
   }
-}
-
-const checkForBidet = (room) => {
-  if (room.bidet) {
-    return "bidet included"
-  } else {
-    return "bidet not included"
-  }
-}
-
-const resetRoomType = () => {
-  roomTypeInputs[0].checked = true;
 }
 
 const updateBookingsPage = () => {
@@ -153,7 +167,45 @@ const updateBookingsPage = () => {
     <article class="booking-box">
     <h4>We apologize for the inconvenience. There are no rooms available matching your search criteria. Please try selecting alternate dates or modifying your filter options.</h4>
     </article>
-    `
+    `;
+  }
+}
+
+const checkForBidet = (room) => {
+  if (room.bidet) {
+    return "bidet included";
+  } else {
+    return "bidet not included";
+  }
+}
+
+const confirmPass = () => {
+  if (password.value === "overlook2021") {
+    return true;
+  }
+}
+
+const confirmUsername = () => {
+  let uName = username.value;
+  if (uName.startsWith("customer") && uName.length === 10) {
+    uName = uName.split("customer").join("")
+    if (parseInt(uName) >= 10 && parseInt(uName) <= 50) {
+      return true;
+    }
+  } else if (uName.startsWith("customer") && uName.length === 9) {
+    uName = uName.split("customer").join("")
+    if (parseInt(uName) >= 1 && parseInt(uName) <= 9) {
+      return true;
+    }
+  }
+}
+
+const confirmLogin = () => {
+  if (confirmUsername() && confirmPass()) {
+    loginErr.innerText = "";
+    promiseUser(username.value.substring(8));
+  } else {
+    loginErr.innerText = "Incorrect Username or Password";
   }
 }
 
@@ -177,7 +229,6 @@ const goToDashPage = () => {
   bookNow.focus();
 }
 
-
 // EVENT LISTENERS ///////////////////////////////
 window.addEventListener("load", promiseData);
 bookNow.addEventListener("click", goToBookingPage);
@@ -186,5 +237,11 @@ updateSearchButton.addEventListener("click", updateBookingsPage);
 allBookings.addEventListener("click", (event) => {
   if(event.target.type === "button") {
     promisePost(event.target);
+  }
+});
+loginButton.addEventListener("click", confirmLogin);
+password.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    confirmLogin();
   }
 });

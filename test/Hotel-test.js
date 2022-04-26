@@ -15,19 +15,11 @@ describe("Hotel", () => {
   let hotel;
 
   beforeEach(() => {
-    hotel = new Hotel(sampleCustomers, sampleRooms, sampleBookings);
+    hotel = new Hotel(sampleRooms, sampleBookings);
   });
 
   it("should have a current user with default value of null", () => {
     expect(hotel.activeCustomer).to.equal(null);
-  });
-
-  it("should hold all customers", () => {
-    expect(hotel.allCustomers).to.deep.equal(sampleCustomers);
-  });
-
-  it("should make customers be instances of Customer", () => {
-    expect(hotel.allCustomers[0]).to.be.an.instanceOf(Customer);
   });
 
   it("should hold all bookings", () => {
@@ -46,34 +38,42 @@ describe("Hotel", () => {
     expect(hotel.rooms[0]).to.be.an.instanceOf(Room);
   });
 
-  it("should have a method to assign an active customer based on id", () => {
-    hotel.selectCustomer(1);
+  it("should have a method to assign an active customer", () => {
+    hotel.selectCustomer(sampleCustomers[0]);
 
     expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[0]);
   });
 
+  it("should make customer be an instance of Customer", () => {
+    hotel.selectCustomer(sampleCustomers[0]);
+
+    expect(hotel.activeCustomer).to.be.an.instanceOf(Customer);
+  });
+
   it("should be able to select another user", () => {
-    hotel.selectCustomer(5);
+    hotel.selectCustomer(sampleCustomers[4]);
 
     expect(hotel.activeCustomer).to.deep.equal(sampleCustomers[4]);
   });
 
-  it("should be undefined if given a bad number", () => {
-    hotel.selectCustomer(51);
-
-    expect(hotel.activeCustomer).to.equal(undefined);
-  });
-
   it("should have a method to return active customer's bookings", () => {
-    hotel.selectCustomer(1);
+    hotel.selectCustomer(sampleCustomers[0]);
 
     let customerOneBookings = hotel.findUserBookings();
 
     expect(customerOneBookings).to.deep.equal([sampleBookings[0], sampleBookings[2]]);
   });
 
+  it("should be able to return a different customer's bookings", () => {
+    hotel.selectCustomer(sampleCustomers[1]);
+
+    let customerTwoBookings = hotel.findUserBookings();
+
+    expect(customerTwoBookings).to.deep.equal([sampleBookings[1]]);
+  });
+
   it("should have a method to get room details of customer's bookings", () => {
-    hotel.selectCustomer(1);
+    hotel.selectCustomer(sampleCustomers[0]);
 
     let customerRoomDetails = hotel.findUserRoomDetails();
 
@@ -104,7 +104,7 @@ describe("Hotel", () => {
   });
 
   it("should have a method to sort user rooms", () => {
-    hotel.selectCustomer(1);
+    hotel.selectCustomer(sampleCustomers[0]);
     
     let sortedRoomDetails = hotel.sortUserRooms();
 
@@ -135,7 +135,7 @@ describe("Hotel", () => {
   });
 
   it("should have a method to find active customer's total spent on bookings", () => {
-    hotel.selectCustomer(1);
+    hotel.selectCustomer(sampleCustomers[0]);
 
     let customerTotal = hotel.calcTotal();
 
@@ -158,7 +158,7 @@ describe("Hotel", () => {
     let bookingIDs = hotel.findBookings("2023/01/10");
 
     expect(bookingIDs).to.deep.equal([]);
-  })
+  });
 
   it("should be able to return multiple numbers if there are multiple bookings on the same date", () => {
     let bookingIDs = hotel.findBookings("2022/04/22");
@@ -221,5 +221,5 @@ describe("Hotel", () => {
     hotel.addBooking(newBooking);
 
     expect(hotel.bookings[5]).to.be.an.instanceOf(Booking);
-  })
+  });
 });
