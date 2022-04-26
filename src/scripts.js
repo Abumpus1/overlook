@@ -30,7 +30,13 @@ const allBookings = document.querySelector(".available-bookings-container");
 const roomTypeInputs = document.querySelectorAll(".filter-room-types input");
 const updateSearchButton = document.querySelector(".update-booking-search");
 const dateErr = document.querySelector(".date-err");
-// const stanley = document.querySelector(".stanley");
+const password = document.querySelector(".password");
+const username = document.querySelector(".username");
+const loginButton = document.querySelector(".sign-in");
+const loginErr = document.querySelector(".login-err");
+const main = document.querySelector("main");
+const nav = document.querySelector("nav");
+const loginPage = document.querySelector(".login-page");
 
 // FUNCTIONS /////////////////////////////////////
 const hide = (element) => {
@@ -45,9 +51,9 @@ const promiseData = () => {
   Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
   .then(data => {
     setHotel(data[0].customers, data[1].rooms, data[2].bookings);
-    hotel.selectCustomer(50);
+    // hotel.selectCustomer(50);
     setBookingDate();
-    updateDashboard();
+    // updateDashboard();
   })
   .catch(err => console.log(err));
 }
@@ -110,9 +116,9 @@ const updateDashboard = () => {
 
 const checkForBidet = (room) => {
   if (room.bidet) {
-    return "bidet included"
+    return "bidet included";
   } else {
-    return "bidet not included"
+    return "bidet not included";
   }
 }
 
@@ -158,6 +164,40 @@ const updateBookingsPage = () => {
   }
 }
 
+const confirmLogin = () => {
+  if (confirmUsername() && confirmPass()) {
+    loginErr.innerText = "";
+    hotel.selectCustomer(parseInt(username.value.substring(8)));
+    hide(loginPage);
+    show(nav);
+    show(main);
+    updateDashboard();
+  } else {
+    loginErr.innerText = "Incorrect Username or Password";
+  }
+}
+
+const confirmUsername = () => {
+  let uName = username.value;
+  if (uName.startsWith("customer") && uName.length === 10) {
+    uName = uName.split("customer").join("")
+    if (parseInt(uName) >= 10 && parseInt(uName) <= 50) {
+      return true;
+    }
+  } else if (uName.startsWith("customer") && uName.length === 9) {
+    uName = uName.split("customer").join("")
+    if (parseInt(uName) >= 1 && parseInt(uName) <= 9) {
+      return true;
+    }
+  }
+}
+
+const confirmPass = () => {
+  if (password.value === "overlook2021") {
+    return true;
+  }
+}
+
 const goToBookingPage = () => {
   hide(bookNow);
   hide(dashboardPage);
@@ -187,5 +227,11 @@ updateSearchButton.addEventListener("click", updateBookingsPage);
 allBookings.addEventListener("click", (event) => {
   if(event.target.type === "button") {
     promisePost(event.target);
+  }
+});
+loginButton.addEventListener("click", confirmLogin);
+password.addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    confirmLogin();
   }
 });
