@@ -90,7 +90,7 @@ input {
   justify-content: center;
   align-items: center;
   background-color: black;
-  z-index: -2;
+  z-index: 1;
 }
 
 .login-image {
@@ -99,24 +99,38 @@ input {
   width: 120vw;
   left: -10vw;
   right: -10vw;
-  z-index: -1;
+  z-index: 2;
 }
 
 .login-container {
+  z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   filter: none;
-  width: 50vw;
-  height: 50vh;
-  background-color: #ffffff;
+  width: 35vw;
+  min-width: 450px;
+  height: 40vh;
+  min-height: 300px;
+  background-color: #efe6df;
   box-shadow:
-  5.4px 3.1px 3.6px rgba(0, 0, 0, 0.125),
-  15px 8.5px 10px rgba(0, 0, 0, 0.18),
-  36.2px 20.5px 24.1px rgba(0, 0, 0, 0.235),
-  120px 68px 80px rgba(0, 0, 0, 0.36);
+  1.9px 1px 3.6px rgba(0, 0, 0, 0.153),
+  5.4px 2.6px 10px rgba(0, 0, 0, 0.22),
+  13px 6.3px 24.1px rgba(0, 0, 0, 0.287),
+  43px 21px 80px rgba(0, 0, 0, 0.44);
   border-radius: 30px;
+}
+
+h1 {
+  color: #015524;
+  text-shadow: 1px 1px 1px black;
+  font-family: "URW Chancery L", cursive;
+  font-size: 30pt;
+}
+
+.login-container h2 {
+  font-weight: 300;
 }
 
 .login-container div {
@@ -127,11 +141,21 @@ input {
   margin-top: 20px;
 }
 
-.login-container input {
-  border-radius: 5px;
+.login-container label {
+  cursor: default;
 }
 
+.login-container input {
+  cursor: text;
+  border-radius: 15px;
+  text-indent: 10px;
+}
 
+.sign-in {
+  height: 40px;
+  width: 120px;
+  margin: 10px;
+}
 
 
 /* -------- NAV BAR -------- */
