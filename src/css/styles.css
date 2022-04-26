@@ -4,7 +4,6 @@
   font-family: Calibri, sans-serif;
   font-size: 16pt;
   margin: 0;
-  /* border: solid pink 2px; */
 }
 
 html, body {
@@ -14,7 +13,6 @@ html, body {
 
 main {
   display: flex;
-  /* position: relative; */
   flex-direction: column;
   height: 85%;
   overflow: hidden;
@@ -190,6 +188,7 @@ nav {
 /* -- user bookings -- */
 
 .dashboard-page {
+  overflow: hidden;
   overflow-y: auto;
   position: relative;
 }
@@ -288,6 +287,7 @@ nav {
 }
 
 /* -- aside -- */
+
 .bookings-aside {
   display: flex;
   justify-content: center;
