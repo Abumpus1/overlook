@@ -64,6 +64,14 @@ describe("Hotel", () => {
     expect(customerOneBookings).to.deep.equal([sampleBookings[0], sampleBookings[2]]);
   });
 
+  it("should be able to return a different customer's bookings", () => {
+    hotel.selectCustomer(sampleCustomers[1]);
+
+    let customerTwoBookings = hotel.findUserBookings();
+
+    expect(customerTwoBookings).to.deep.equal([sampleBookings[1]]);
+  });
+
   it("should have a method to get room details of customer's bookings", () => {
     hotel.selectCustomer(sampleCustomers[0]);
 
@@ -150,7 +158,7 @@ describe("Hotel", () => {
     let bookingIDs = hotel.findBookings("2023/01/10");
 
     expect(bookingIDs).to.deep.equal([]);
-  })
+  });
 
   it("should be able to return multiple numbers if there are multiple bookings on the same date", () => {
     let bookingIDs = hotel.findBookings("2022/04/22");
@@ -213,5 +221,5 @@ describe("Hotel", () => {
     hotel.addBooking(newBooking);
 
     expect(hotel.bookings[5]).to.be.an.instanceOf(Booking);
-  })
+  });
 });
