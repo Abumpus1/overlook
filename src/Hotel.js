@@ -10,7 +10,7 @@ class Hotel {
   }
 
   selectCustomer(customer) {
-    this.activeCustomer = new Customer(customer);
+      this.activeCustomer = new Customer(customer);
   }
 
   findUserBookings() {
