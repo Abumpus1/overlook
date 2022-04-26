@@ -37,7 +37,43 @@ const main = document.querySelector("main");
 const nav = document.querySelector("nav");
 const loginPage = document.querySelector(".login-page");
 
+
+// PROMISES //////////////////////////////////////
+
+const promiseData = () => {
+  Promise.all([getData("rooms"), getData("bookings")])
+  .then(data => {
+    setHotel(data[0].rooms, data[1].bookings);
+    setBookingDate();
+  })
+  .catch(err => console.log(err));
+}
+
+const promiseUser = (id) => {
+  Promise.all([getData(`customers/${id}`)])
+  .then(data => {
+    hotel.selectCustomer(data[0])
+    hide(loginPage);
+    show(nav);
+    show(main);
+    updateDashboard();
+  })
+  .catch(err => console.log(err));
+}
+
+const promisePost = (button) => {
+  Promise.all([postData(hotel.activeCustomer.id, button.dataset.date, parseInt(button.dataset.number))])
+  .then(data => {
+    console.log(data[0].newBooking);
+    hotel.addBooking(data[0].newBooking);
+    goToDashPage();
+  })
+  .catch(err => console.log(err));
+}
+
+
 // FUNCTIONS /////////////////////////////////////
+
 const setHotel = (customers, rooms, bookings) => {
   hotel = new Hotel(customers, rooms, bookings);
 }
@@ -61,25 +97,6 @@ const getDate = () => {
 
 const resetRoomType = () => {
   roomTypeInputs[0].checked = true;
-}
-
-const promiseData = () => {
-  Promise.all([getData("customers"), getData("rooms"), getData("bookings")])
-  .then(data => {
-    setHotel(data[0].customers, data[1].rooms, data[2].bookings);
-    setBookingDate();
-  })
-  .catch(err => console.log(err));
-}
-
-const promisePost = (button) => {
-  Promise.all([postData(hotel.activeCustomer.id, button.dataset.date, parseInt(button.dataset.number))])
-  .then(data => {
-    console.log(data[0].newBooking);
-    hotel.addBooking(data[0].newBooking);
-    goToDashPage();
-  })
-  .catch(err => console.log(err));
 }
 
 const updateDashboard = () => {
@@ -162,6 +179,12 @@ const checkForBidet = (room) => {
   }
 }
 
+const confirmPass = () => {
+  if (password.value === "overlook2021") {
+    return true;
+  }
+}
+
 const confirmUsername = () => {
   let uName = username.value;
   if (uName.startsWith("customer") && uName.length === 10) {
@@ -180,19 +203,9 @@ const confirmUsername = () => {
 const confirmLogin = () => {
   if (confirmUsername() && confirmPass()) {
     loginErr.innerText = "";
-    hotel.selectCustomer(parseInt(username.value.substring(8)));
-    hide(loginPage);
-    show(nav);
-    show(main);
-    updateDashboard();
+    promiseUser(username.value.substring(8));
   } else {
     loginErr.innerText = "Incorrect Username or Password";
-  }
-}
-
-const confirmPass = () => {
-  if (password.value === "overlook2021") {
-    return true;
   }
 }
 
