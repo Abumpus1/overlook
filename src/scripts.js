@@ -1,6 +1,7 @@
 import { getData, postData } from "./api-calls";
 import "./css/styles.css";
 import Hotel from "./Hotel";
+import "./images/login-image.jpg";
 import "./images/stanley.jpg";
 import "./images/OverlookHotel.png";
 import "./images/1full.jpg";

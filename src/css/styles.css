@@ -80,6 +80,60 @@ input {
 }
 
 
+/* -------- LOGIN -------- */
+
+.login-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  z-index: -2;
+}
+
+.login-image {
+  filter: blur(8px);
+  position: absolute;
+  width: 120vw;
+  left: -10vw;
+  right: -10vw;
+  z-index: -1;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  filter: none;
+  width: 50vw;
+  height: 50vh;
+  background-color: #ffffff;
+  box-shadow:
+  5.4px 3.1px 3.6px rgba(0, 0, 0, 0.125),
+  15px 8.5px 10px rgba(0, 0, 0, 0.18),
+  36.2px 20.5px 24.1px rgba(0, 0, 0, 0.235),
+  120px 68px 80px rgba(0, 0, 0, 0.36);
+  border-radius: 30px;
+}
+
+.login-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.login-container input {
+  border-radius: 5px;
+}
+
+
+
+
 /* -------- NAV BAR -------- */
 
 nav {

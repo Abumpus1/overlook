@@ -7,13 +7,28 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <nav>
+  <section class="login-page">
+    <article class="login-container">
+      <h1>Welcome to Overlook Hotel</h1>
+      <h2>Please Log in</h2>
+      <div>
+        <label for="username">Username:</label>
+        <input name="username" type="text">
+      </div>
+      <div>
+        <label for="pass">Password:</label>
+        <input name="pass" type="password">
+      </div>
+    </article>
+    <img class="login-image" src="./images/login-image.jpg" alt="blurred check in desk">
+  </section>
+  <nav class="hidden">
     <img src="./images/OverlookHotel.png" alt="overlook hotel logo" class="logo">
-    <h1 class="welcome-user"></h1>
+    <h2 class="welcome-user"></h2>
     <button class="book-now">BOOK NOW</button>
     <button class="return-to-dashboard hidden">RETURN TO DASHBOARD</button>
   </nav>
-  <main>
+  <main class="hidden">
     <section class="dashboard-page">
       <div class="stanley-box">
         <img class="stanley" src="./images/stanley.jpg" alt="stanley hotel">
