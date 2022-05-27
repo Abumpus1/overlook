@@ -21,6 +21,7 @@ const getData = (dataLocation) => {
   .catch(err => console.log(err));
 }
 
+
 const postData = (userID, date, roomNum) => {
   return fetch("https://pacific-plateau-49208.herokuapp.com/api/v1/bookings", {
     method: 'POST',
