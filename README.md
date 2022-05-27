@@ -4,8 +4,7 @@
 - [Project Overview](#project-overview)
 - [Technologies Used](#technologies-used)
 - [How to Set Up](#how-to-set-up)
-- [Deployed Link](#deployed-link)
-- [Learning Goals](#learning-goals)
+- [Learning Goals](#learning-goals-and-outcomes)
 - [Future Features](#future-features)
 - [Contributors](#contributors)
 
@@ -16,6 +15,7 @@ Overlook is an application that allows a user to view and book hotel rooms. In t
 
 The user can also click the "book now" button on the top right of the dashboard, and be taken to a screen that allows the user to view and book available rooms. On this screen, the user can search for available rooms by date as well as by room type. Once a user clicks on the button to book a room, they will be brought back to the dashboard, which should now have the new booking displayed under the "Active Bookings" section.
 
+Here's the [deploy link!](https://abumpus1.github.io/overlook/)
 
 ### Check Out the Page In Action!
 
@@ -40,17 +40,11 @@ The user can also click the "book now" button on the top right of the dashboard,
 
 ### How to Set Up
 
-#### Note: You will need to also download [this API](https://github.com/turingschool-examples/overlook-api), which serves as the server that this application uses to fetch data. Please follow the "Set up" section and have this server running in your terminal at the same time as this application
-
 -  Clone this repo
 - `cd` into the `overlook` directory
 - Run `npm install`
 - Run `npm start`
 - Open a window in your web browser of choice, and visit localhost:8080 to view the app!
-
-
-### Deployed link
-- Not currently available
 
 ### Learning Goals and Outcomes
 The main goals for this project were to gain further familiarity with fetch API, Webpack, and writing tests. This was a solo educational project with a time frame of one week to complete. My personal goal was to try my best to make a realistic looking site with the data given to me and the expectations of the project spec in mind.
