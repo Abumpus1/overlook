@@ -1,5 +1,5 @@
 const getData = (dataLocation) => {
-  return fetch(`http://localhost:3001/api/v1/${dataLocation}`)
+  return fetch(`https://pacific-plateau-49208.herokuapp.com/api/v1/${dataLocation}`)
  .then(response => {
    if (!response.ok) {
      throw Error(response.statusText)
@@ -9,8 +9,9 @@ const getData = (dataLocation) => {
   .catch(err => console.log(err));
 }
 
+
 const postData = (userID, date, roomNum) => {
-  return fetch("http://localhost:3001/api/v1/bookings", {
+  return fetch("https://pacific-plateau-49208.herokuapp.com/api/v1/bookings", {
     method: 'POST',
     body: JSON.stringify({
       userID: userID,
